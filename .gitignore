@@ -1,0 +1,27 @@
+# Packages
+node_modules/
+package-lock.json
+
+# Log files
+logs/
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Env
+.env
+
+# Dist
+dist/
+
+# Miscellaneous
+.tmp/
+.github/
+ormconfig.json
+
+# IDE
+.vscode

@@ -1,0 +1,41 @@
+{
+  "name": "zkr",
+  "version": "1.0.0",
+  "description": "Z'kr bot for twitter.",
+  "main": "dist/zkr.js",
+  "author": "Abady <gamersspeaks@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "gulp"
+  },
+  "dependencies": {
+    "@types/dotenv": "^6.1.1",
+    "@types/express": "^4.17.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.16.1",
+    "moment": "^2.24.0",
+    "oauth": "^0.9.15",
+    "pg": "^7.11.0",
+    "twit": "^2.2.11",
+    "typeorm": "^0.2.18",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/oauth": "^0.9.1",
+    "@types/twit": "^2.2.22",
+    "@typescript-eslint/eslint-plugin": "^1.9.0",
+    "@typescript-eslint/parser": "^1.9.0",
+    "eslint": "^5.16.0",
+    "eslint-config-marine": "^3.0.2",
+    "fs-nextra": "^0.4.5",
+    "gulp": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-typescript": "^5.0.1",
+    "typescript": "^3.5.1"
+  },
+  "eslintConfig": {
+    "extends": "marine/node"
+  }
+}
