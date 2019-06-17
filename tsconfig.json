@@ -2,6 +2,7 @@
 	"compilerOptions": {
 		"strict": true,
 		"module": "commonjs",
+		"baseUrl": "./src/views",
 		"moduleResolution": "node",
 		"target": "es2018",
 		"lib": [
@@ -22,6 +23,6 @@
 		"pretty": true
 	},
 	"include": [
-		"./src"
+		"src/**/*"
 	]
 }
