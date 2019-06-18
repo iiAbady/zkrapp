@@ -1,6 +1,6 @@
 {
   "name": "zkr",
-  "version": "1.0.0",
+  "version": "0.9.0",
   "description": "Z'kr bot for twitter.",
   "main": "dist/zkr.js",
   "author": "Abady <gamersspeaks@gmail.com>",
