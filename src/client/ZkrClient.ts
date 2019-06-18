@@ -3,7 +3,7 @@ import Database from '../structures/Database';
 import Scheduler from '../structures/Scheduler';
 import logger from '../util/Logger';
 import { Connection } from 'typeorm';
-import { Time } from '../models/Time';
+import { Azakr } from '../models/Azkar';
 
 
 export default class ZkrClient extends Twitter {
@@ -27,7 +27,7 @@ export default class ZkrClient extends Twitter {
 	public async start(): Promise<void> {
 		this.db = Database.get('zkr');
 		await this.db.connect();
-		this.scheduler = new Scheduler(this, this.db.getRepository(Time));
+		this.scheduler = new Scheduler(this, this.db.getRepository(Azakr));
 		this.scheduler.init();
 	}
 }

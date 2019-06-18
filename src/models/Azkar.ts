@@ -1,17 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn, Index } from 'typeorm';
+import { Entity, Column, PrimaryColumn, Index } from 'typeorm';
 
 /* eslint-disable @typescript-eslint/explicit-member-accessibility */
 
 @Entity('azkar')
 export class Azakr {
-	@PrimaryGeneratedColumn()
-	id!: number;
-
-	@Index()
-	@Column({ type: 'text' })
-	author!: string;
-
-	@Column()
+	@PrimaryColumn()
 	content!: string;
 
 	@Column({ 'default': 0 })
@@ -20,8 +13,8 @@ export class Azakr {
 	@Column({ 'type': 'timestamptz', 'default': (): string => 'now()' })
 	createdAt!: Date;
 
-	@Column({ type: 'timestamptz' })
-	lastSended!: Date;
+	@Column({ type: 'timestamptz', nullable: true })
+	last_sent!: Date;
 
     @Index()
     @Column({ 'default': false })

@@ -1,38 +1,44 @@
 import ZkrClient from '../client/ZkrClient';
-import { LessThan, Repository } from 'typeorm';
-import { Time } from '../models/Time';
+import { Repository, IsNull, LessThan } from 'typeorm';
 import { Azakr } from '../models/Azkar';
 import { User } from '../models/Users';
 
 export default class Scheduler {
 	protected client: ZkrClient;
 
-	protected repo: Repository<any>;
+	protected repo: Repository<Azakr>;
 
 	protected checkRate: number;
 
+	protected dailyRate: number;
+
 	protected checkInterval!: NodeJS.Timeout;
 
-	public constructor(client: ZkrClient, repository: Repository<any>, { checkRate = Number(process.env.CHECK_RATE) } = {}) {
+	public constructor(client: ZkrClient, repository: Repository<Azakr>, { checkRate = Number(process.env.CHECK_RATE), dailyRate = Number(process.env.DAILY_RATE) } = {}) {
 		this.client = client;
 		this.repo = repository;
 		this.checkRate = checkRate;
+		this.dailyRate = dailyRate;
 	}
 
-	public async run(): Promise<void> {
-		const azkarRepo = this.client.db.getRepository(Azakr);
-		const zkr = await azkarRepo.findOne({ approved: true, lastSended: LessThan(new Date(Date.now() - Number(process.env.DAILY_RATE))) });
-		if (!zkr) return;
+	public async run(zkr: Azakr): Promise<void> {
 		const usersRepo = this.client.db.getRepository(User);
 		const users = await usersRepo.find();
+
+		if (!users.length) {
+			return;
+		}
+
 		for (const { token, token_secert } of users) {
 			// @ts-ignore
 			this.client.setAuth({ access_token: token, access_token_secret: token_secert });
 			this.client.tweet(zkr!.content);
 		}
-		this.client.logger.info(`[SCHEDULER] Sent (${zkr.lastSended}) zkr to ${users.length} users.`);
-		zkr!.lastSended = new Date();
-		azkarRepo.save(zkr!);
+
+		this.client.logger.info(`[SCHEDULER] Sent (${zkr.content}) zkr to ${users.length} users.`);
+		zkr.last_sent = new Date();
+		zkr.sends += 1;
+		this.repo.save(zkr);
 	}
 
 	public async init(): Promise<void> {
@@ -41,9 +47,18 @@ export default class Scheduler {
 	}
 
 	public async check(): Promise<void> {
-		const timeRepo = this.client.db.getRepository(Time);
-		const time = await timeRepo.find({ triggers_at: LessThan(new Date(Date.now() - this.checkRate)) });
-		if (!time) return;
-		this.run();
+		const zkr = await this.repo.findOne({
+			where: [
+				{ last_sent: IsNull(), approved: true },
+				/** @NOTE Posting identical Tweets over multiple hours or days is against Twitter ToS */
+				{ last_sent: LessThan(new Date(Date.now() - this.dailyRate)), approved: true }
+			]
+		});
+
+		if (!zkr) {
+			return;
+		}
+
+		this.run(zkr);
 	}
 }
