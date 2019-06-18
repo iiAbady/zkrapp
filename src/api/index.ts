@@ -1,8 +1,10 @@
-import * as express from 'express';
 import { OAuth } from 'oauth';
-import Database from '../structures/Database';
 import { User } from '../models/Users';
+import { join } from 'path';
+import * as express from 'express';
+import Database from '../structures/Database';
 import logger from '../util/Logger';
+// import { handleApiError } from '../util/ErrorHandler';
 const session = require('express-session') // eslint-disable-line
 
 const {
@@ -29,11 +31,20 @@ async function server(port: string): Promise<void> {
 
 	const Server = express();
 
-	Server.use(session({
-		resave: true,
-		saveUninitialized: true,
-		secret: session_secret
-	}));
+	Server
+		.set('views', join(__dirname, '..', 'views'))
+		.set('view engine', 'ejs')
+	    .use(session({
+			resave: true,
+			saveUninitialized: true,
+			secret: session_secret
+		}))
+		.use(express.static(join(__dirname, '..', '..', 'static')));
+
+
+	Server.get('/', (_, res) => {
+		res.render('pages/index');
+	});
 
 	Server.get('/connect', (req, res) => {
 	// eslint-disable-next-line promise/prefer-await-to-callbacks
@@ -56,19 +67,25 @@ async function server(port: string): Promise<void> {
 		oauth.getOAuthAccessToken(oauth_token, req.session.tokenSecert, oauth_verifier, async (err, token, token_secert) => {
 			if (err) {
 				logger.error(`[ERROR: API] ${err.data}`);
-				res.send('An error occur, Please try again.');
+				res.redirect('/connect');
 			} else {
 				const usersRepo = db.getRepository(User);
 				const user = new User();
 				user.token = token;
 				user.token_secert = token_secert;
 				await usersRepo.save(user);
-				res.render('Thanks for using our thing.');
+				res.render('pages/thanks');
 			}
 		});
 	});
 
-	Server.listen(port);
+	Server.get('*', (_, res) => {
+		res.status(404).render('pages/error');
+	});
+
+	Server.listen(port, () => {
+		logger.info(`> Server ready at http://localhost:${port}`);
+	});
 }
 
 export { server };
