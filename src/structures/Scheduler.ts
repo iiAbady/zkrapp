@@ -50,7 +50,11 @@ export default class Scheduler {
 		const zkr = await this.repo.findOne({
 			where: [
 				{ last_sent: IsNull(), approved: true },
-				/** @NOTE Posting identical Tweets over multiple hours or days is against Twitter ToS */
+				/**
+				 * @NOTE Posting identical Tweets over multiple hours or days is against Twitter ToS
+				 * @NOTE Please make sure that dailyRate is less than a good amount of time that It won't make it look like spammy!
+				 * @NOTE Checkout https://help.twitter.com/en/rules-and-policies/twitter-automation
+				*/
 				{ last_sent: LessThan(new Date(Date.now() - this.dailyRate)), approved: true }
 			]
 		});
