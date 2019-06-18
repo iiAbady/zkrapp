@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"strict": true,
 		"module": "commonjs",
-		"baseUrl": "./src/views",
+		"baseUrl": ".",
 		"moduleResolution": "node",
 		"target": "es2018",
 		"lib": [
