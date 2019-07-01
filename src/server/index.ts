@@ -6,7 +6,7 @@ import logger from '../util/Logger';
 import * as auth from '../middleware/auth';
 import * as routes from '../routes';
 
-async function server(port: string): Promise<void> {
+export default async function server(port: string): Promise<void> {
 	const db = Database.get('zkr');
 	await db.connect();
 	await db.synchronize();
@@ -25,7 +25,5 @@ async function server(port: string): Promise<void> {
 		logger.info(`> Server ready at http://localhost:${port}`);
 	});
 }
-
-export { server };
 
 

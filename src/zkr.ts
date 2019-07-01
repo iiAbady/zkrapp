@@ -2,7 +2,7 @@ interface TwitError { message: string; statusCode: string; code: string; twitter
 
 import './util/Env';
 import Client from './client/ZkrClient';
-import { server } from './api';
+import server from './server';
 import { Logger } from 'winston';
 
 const { consumer_key, consumer_secret, access_token, access_secret } = process.env;
