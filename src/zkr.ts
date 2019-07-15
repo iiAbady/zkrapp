@@ -5,7 +5,7 @@ import Client from './client/ZkrClient';
 import server from './server';
 import { Logger } from 'winston';
 
-const { consumer_key, consumer_secret, access_token, access_secret } = process.env;
+const { consumer_key, consumer_secret, access_token, access_secret, PORT } = process.env;
 const client = new Client(consumer_key!, consumer_secret!, access_token!, access_secret!);
 
 client.stream('statuses/sample')
@@ -16,5 +16,5 @@ client.stream('statuses/sample')
 
 process.on('unhandledRejection', (err: any): Logger => client.logger.error(`[UNHANDLED REJECTION] ${err.message}`, err.stack));
 
-server('80');
+server(PORT!);
 client.start();
