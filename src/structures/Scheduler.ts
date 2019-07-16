@@ -30,9 +30,13 @@ export default class Scheduler {
 		}
 
 		for (const { token, token_secert } of users) {
-			// @ts-ignore
-			this.client.setAuth({ access_token: token, access_token_secret: token_secert });
-			this.client.tweet(zkr!.content);
+			try {
+				// @ts-ignore
+				this.client.setAuth({ access_token: token, access_token_secret: token_secert });
+				this.client.tweet(zkr!.content);
+			} catch (error) {
+				this.client.logger.error(`[SCHEDULER] There was error sending to this user (${token}): `, error);
+			}
 		}
 
 		this.client.logger.info(`[SCHEDULER] Sent (${zkr.content}) zkr to ${users.length} users.`);
@@ -43,7 +47,7 @@ export default class Scheduler {
 
 	public async init(): Promise<void> {
 		await this.check();
-		this.checkInterval = setInterval(this.check.bind(this), this.checkRate);
+		this.checkInterval = setInterval(this.check.bind(this), this.checkRate / 2);
 	}
 
 	public async check(): Promise<void> {
