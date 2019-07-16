@@ -1,5 +1,5 @@
 import ZkrClient from '../client/ZkrClient';
-import { Repository, IsNull, LessThan, LessThanOrEqual } from 'typeorm';
+import { Repository, IsNull, LessThan, MoreThan } from 'typeorm';
 import { Azakr } from '../models/Azkar';
 import { User } from '../models/Users';
 
@@ -48,9 +48,9 @@ export default class Scheduler {
 
 	public async check(): Promise<void> {
 		// TODO: use a better way for checking
-		const check = await this.repo.findOne({ where: { last_sent: LessThanOrEqual(new Date(Date.now() - this.checkRate)) } });
+		const check = await this.repo.findOne({ where: { last_sent: MoreThan(new Date(Date.now() - this.checkRate)) } });
 
-		if (!check) {
+		if (check) {
 			return;
 		}
 
