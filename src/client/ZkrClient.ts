@@ -22,7 +22,7 @@ export default class ZkrClient extends Twitter {
 		});
 	}
 
-	public tweet = (content: string) => this.post('statuses/update', { status: `${content}\n\n#ZkrApp\nhttp://zkr.abady.me` });
+	public tweet = (content: string) => this.post('statuses/update', { status: `${content}\n\n#ZkrApp\nhttps://zkr.abady.me` });
 
 	public async start(): Promise<void> {
 		this.db = Database.get('zkr');
