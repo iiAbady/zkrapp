@@ -47,10 +47,11 @@ export default class Scheduler {
 
 	public async init(): Promise<void> {
 		await this.check();
-		this.checkInterval = setInterval(this.check.bind(this), this.checkRate / 2);
+		this.checkInterval = setInterval(this.check.bind(this), 3e5);
 	}
 
 	public async check(): Promise<void> {
+		this.client.logger.info('[SCHEDULER] Check started.');
 		// TODO: use a better way for checking
 		const check = await this.repo.findOne({ where: { last_sent: MoreThan(new Date(Date.now() - this.checkRate)) } });
 
