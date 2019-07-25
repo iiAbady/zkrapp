@@ -9,7 +9,6 @@ import * as routes from '../routes';
 export default async function server(port: string): Promise<void> {
 	const db = Database.get('zkr');
 	await db.connect();
-	await db.synchronize();
 
 	const Server = express();
 

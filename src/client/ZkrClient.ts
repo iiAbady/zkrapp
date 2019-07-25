@@ -27,6 +27,7 @@ export default class ZkrClient extends Twitter {
 	public async start(): Promise<void> {
 		this.db = Database.get('zkr');
 		await this.db.connect();
+		await this.db.synchronize();
 		this.scheduler = new Scheduler(this, this.db.getRepository(Azakr));
 		this.scheduler.init();
 	}
