@@ -1,22 +1,20 @@
-import { Entity, Column, PrimaryColumn, Index } from 'typeorm';
-
-/* eslint-disable @typescript-eslint/explicit-member-accessibility */
+import { Entity, Column, PrimaryColumn, Index, CreateDateColumn } from 'typeorm';
 
 @Entity('azkar')
 export class Azakr {
 	@PrimaryColumn()
-	content!: string;
+	public content!: string;
 
 	@Column({ 'default': 0 })
-	sends!: number;
-
-	@Column({ 'type': 'timestamptz', 'default': (): string => 'now()' })
-	createdAt!: Date;
+	public sends!: number;
 
 	@Column({ type: 'timestamptz', nullable: true })
-	last_sent!: Date;
+	public last_sent!: Date;
+
+	@CreateDateColumn()
+	public createdAt!: Date;
 
     @Index()
     @Column({ 'default': false })
-	approved!: boolean;
+	public approved!: boolean;
 }
