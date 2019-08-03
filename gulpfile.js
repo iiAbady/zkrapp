@@ -2,7 +2,6 @@ const gulp = require('gulp');
 const fsn = require('fs-nextra');
 const ts = require('gulp-typescript');
 const sourcemaps = require('gulp-sourcemaps');
-const ejs = require('gulp-ejs');
 const project = ts.createProject('tsconfig.json');
 
 async function clean() {
@@ -10,7 +9,7 @@ async function clean() {
 }
 
 function website() {
-	return gulp.src('src/views/**/*.ejs').pipe(ejs()).pipe(gulp.dest('dist/views'));
+	return gulp.src('src/views/**/*.ejs').pipe(gulp.dest('dist/views'));
 }
 
 function scripts() {

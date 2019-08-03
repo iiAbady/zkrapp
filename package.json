@@ -16,7 +16,6 @@
     "express": "^4.17.1",
     "express-session": "^1.16.2",
     "fs-nextra": "^0.4.5",
-    "gulp-ejs": "^4.1.1",
     "moment-timezone": "^0.5.26",
     "oauth": "^0.9.15",
     "pg": "^7.12.0",
