@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import Route from '../structures/Route';
 
-export default class IndexRoute extends Route {
+export default class LogoutRoute extends Route {
 	public constructor() {
 		super({
 			auth: true,

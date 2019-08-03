@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { User } from '../models/Users';
 import Route from '../structures/Route';
 
-export default class IndexRoute extends Route {
+export default class CallbackRoute extends Route {
 	public constructor() {
 		super({
 			id: 'callback',
