@@ -10,7 +10,7 @@ export default class IndexRoute extends Route {
 		});
 	}
 
-	public exec(req: Request, res: Response): void {
+	public exec(_: Request, res: Response): void {
 		res.render('pages/index');
 	}
 }

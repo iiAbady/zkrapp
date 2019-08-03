@@ -14,7 +14,8 @@ export default class IndexRoute extends Route {
 	public exec(req: Request, res: Response): void {
 		req.session!.destroy(error => {
 			if (error) {
-				console.error(error);
+				this.logger!.error(`Error occur in ${this.route![0]}`, error);
+				res.render('pages/error', { code: null });
 			} else {
 				res.clearCookie('connect.sid');
 				res.redirect(req.headers.referer || '/');

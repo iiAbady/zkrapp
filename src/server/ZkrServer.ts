@@ -45,10 +45,11 @@ export default class Server {
 
 			const handler: RequestHandler = (req, res, next): void => file.exec(req, res, next);
 
-			(server as any)[file.method!](file.route!, reautHandler(file), handler);
+			// @ts-ignore
+			server[file.method!](file.route!, reautHandler(file), handler);
 		}
 
-		server.all('*', (_, res) => res.render('pages/error'));
+		server.all('*', (_, res) => res.render('pages/404'));
 
 		server.listen(this.port, () => this.logger.info(`> Server ready at http://localhost:${this.port}`));
 		return this;

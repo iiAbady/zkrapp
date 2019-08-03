@@ -17,7 +17,7 @@ export default class IndexRoute extends Route {
 		// eslint-disable-next-line promise/prefer-await-to-callbacks
 		this.twitter!.getOAuthAccessToken(oauth_token, req.session!.tokenSecert, oauth_verifier, async (err, token, tokenSecert) => {
 			if (err) {
-				this.logger!.error(`[ERROR: API] ${err.data}`);
+				this.logger!.error(`[ERROR] ${err.data}`);
 				res.redirect('/connect');
 			} else {
 				const user = new User();
