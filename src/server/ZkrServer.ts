@@ -8,6 +8,8 @@ import Route from '../structures/Route';
 import { OAuth } from 'oauth';
 import { twitter } from '../auth/auth';
 import { Connection } from 'typeorm';
+import authHandler from '../middleware/auth';
+import reautHandler from '../middleware/reauth';
 
 
 export default class Server {
@@ -27,6 +29,9 @@ export default class Server {
 		this.db = Database.get('zkr');
 		await this.db.connect();
 
+		// Auth Handler
+		server.use(authHandler(this.twitter));
+
 		// Routes
 		const ROUTE_DIR = resolve(__dirname, '../routes');
 		const routes: string[] = await readdir(ROUTE_DIR);
@@ -40,7 +45,7 @@ export default class Server {
 
 			const handler: RequestHandler = (req, res, next): void => file.exec(req, res, next);
 
-			(server as any)[file.method!](file.route!, handler);
+			(server as any)[file.method!](file.route!, reautHandler(file), handler);
 		}
 
 		server.all('*', (_, res) => res.render('pages/error'));
