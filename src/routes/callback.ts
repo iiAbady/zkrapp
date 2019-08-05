@@ -28,7 +28,7 @@ export default class CallbackRoute extends Route {
 				delete req.session!.request_tokenSecert;
 				req.session!.token = token;
 				req.session!.tokenSecert = tokenSecert;
-				res.render('pages/thanks');
+				res.redirect('/?connected=true');
 			}
 		});
 	  }

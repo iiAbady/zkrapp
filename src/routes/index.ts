@@ -10,7 +10,7 @@ export default class IndexRoute extends Route {
 		});
 	}
 
-	public exec(_: Request, res: Response): void {
-		res.render('pages/index');
+	public exec(req: Request, res: Response): void {
+		res.render('pages/index', { alert: req.query.connected });
 	}
 }

@@ -18,7 +18,7 @@ export default class LogoutRoute extends Route {
 				res.render('pages/error', { code: null });
 			} else {
 				res.clearCookie('connect.sid');
-				res.redirect(req.headers.referer || '/');
+				res.redirect('/');
 			}
 		});
 	}
