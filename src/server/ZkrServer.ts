@@ -43,8 +43,15 @@ export default class Server {
 			file.logger = this.logger;
 			file.twitter = this.twitter;
 
-			const handler: RequestHandler = (req, res, next): void => file.exec(req, res, next);
+			const handler: RequestHandler = async (req, res, next): Promise<void> => {
+				try {
+				    file.exec(req, res, next);
+				} catch (error) {
+					if (error.stack && error.code >= 500) this.logger.info(error);
 
+					res.render('pages/error', { code: error.code || 500, message: error.message });
+				}
+			};
 			// @ts-ignore
 			server[file.method!](file.route!, reautHandler(file), handler);
 		}

@@ -15,7 +15,8 @@ export default class LogoutRoute extends Route {
 		req.session!.destroy(error => {
 			if (error) {
 				this.logger!.error(`Error occur in ${this.route![0]}`, error);
-				res.render('pages/error', { code: null });
+				const errorData = { message: error.message };
+				throw errorData;
 			} else {
 				res.clearCookie('connect.sid');
 				res.redirect('/');

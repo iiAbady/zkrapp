@@ -14,8 +14,9 @@ export default class ConnectRoute extends Route {
 		// eslint-disable-next-line promise/prefer-await-to-callbacks
 		this.twitter!.getOAuthRequestToken((err, request_token, request_tokenSecert) => {
 			if (err) {
-		  this.logger!.error(`[ERROR: API] ${err.data}`);
-		  res.render('pages/error', { code: err.statusCode });
+		  this.logger!.error(`[ERROR] ${err.data}`);
+		  const errorData = { code: 400, message: err.data };
+		  throw errorData;
 			} else {
 		  req.session!.request_tokenSecert = request_tokenSecert;
 		  res.redirect(`https://twitter.com/oauth/authorize?oauth_token=${request_token}`);
