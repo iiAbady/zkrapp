@@ -38,12 +38,3 @@ function checker() {
         $('#content').removeClass('is-invalid').addClass('is-valid')
     }
 }
-
-    // $.ajax({
-    //     url: '/api/add',
-    //     data: content,
-    //     method: 'POST',
-    //     contentType: 'application/x-www-form-urlencoded',
-    //     success: () => alert('تمت إضافة الذكر'), // to lazy to add an alert thing
-    //     error: (err) => alert(`'لم تم إضافة الذكر بسبب: ${err}`) // to lazy to add an alert thing
-    // })
