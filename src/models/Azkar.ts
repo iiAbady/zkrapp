@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryColumn, Index, CreateDateColumn } from 'typeorm';
 
 @Entity('azkar')
-export class Azakr {
+export class Azkar {
 	@PrimaryColumn()
 	public content!: string;
 

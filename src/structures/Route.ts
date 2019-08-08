@@ -11,6 +11,7 @@ interface IRouteOptions {
 	twitter?: OAuth;
 	logger?: Logger;
 	db?: Connection;
+	production?: boolean;
 }
 
 export default class Route {
@@ -28,6 +29,8 @@ export default class Route {
 	  this.logger = null;
 
 	  this.db = null;
+
+	  this.production = false;
 	}
 
 	public auth?: boolean | 'admin';
@@ -37,6 +40,7 @@ export default class Route {
 	public twitter?: OAuth;
 	public logger?: Logger | null;
 	public db?: Connection | null;
+	public production?: boolean;
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	public exec(req: Request, res: Response, next?: NextFunction): void {
