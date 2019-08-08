@@ -5,9 +5,9 @@
 </head>
 <body>
 
-<%if (alert && user) { %>
+<%if (locals.user && alert) { %>
 <div class="alert alert-success alert-dismissible text-right fade show" role="alert">
-  <div class="inline" style="font-size: medium; font-weight: bolder"> شكراً <%= user.username%>, سيتم نشر ذكر لك كل ساعة من الان. </div>
+  <div class="inline font-weight-bold" style="font-size: medium"> شكراً <%= user.username%>, سيتم نشر ذكر لك كل ساعة من الان. </div>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="left:0">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -19,10 +19,10 @@
 <div class="jumbotron zkr-jumbotron text-right">
     <h1 class="display-4 j-title">تطبيق ذكر</h1>
     <p class="lead j-subtitle">تطبيق وبوت تويتر لنشر الأذكار في حسابك في تويتر<br/>مع إمكانية التحكم في أوقات الأذكار</p>
-    <% if (!user) { %>
-    <a class="btn btn-lg" href="/connect" role="button">إبدأ الإستخدام</a>
-    <% } else { %>
+    <% if (locals.user) { %>
     <a class="btn btn-lg" href="#" role="button">مرحباً بك يا <%= user.username%></a>
+    <% } else { %>
+    <a class="btn btn-lg" href="/connect" role="button">إبدأ الإستخدام</a>
     <%}%>
     <a class="btn btn-lg btn-outline-default" href="#" role="button">تعرف على المزيد</a>
 </div>

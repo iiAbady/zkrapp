@@ -1,4 +1,4 @@
-import { resolve } from 'path';
+import { resolve, join } from 'path';
 import { readdir } from 'fs-nextra';
 import { Express, RequestHandler } from 'express';
 import Database from '../structures/Database';
@@ -24,6 +24,11 @@ export default class Server {
 	public db!: Connection;
 	public port: string;
 
+
+	public get production(): boolean {
+		return process.env.NODE_ENV === 'production';
+	}
+
 	public async init(server: Express): Promise<this> {
 		// Database
 		this.db = Database.get('zkr');
@@ -32,8 +37,31 @@ export default class Server {
 		// Auth Handler
 		server.use(authHandler(this.twitter));
 
+		// API
+		const API_DIR = resolve(join(__dirname, '..', 'routes', 'api'));
+		const methods: string[] = await readdir(API_DIR);
+
+		for (const method of methods.filter(method => method.endsWith('.js'))) {
+			const file: Route = new (require(`${API_DIR}/${method}`).default)();
+
+			file.db = this.db;
+			file.logger = this.logger;
+			file.production = this.production;
+
+			const handler: RequestHandler = async (req, res, next): Promise<void> => {
+				try {
+					await file.exec(req, res, next);
+				} catch (error) {
+					res.status(error.code || 500).json({ message: error.message || '' });
+				}
+			};
+
+			// @ts-ignore
+			server[file.method!](file.route!, handler);
+		}
+
 		// Routes
-		const ROUTE_DIR = resolve(__dirname, '../routes');
+		const ROUTE_DIR = resolve(join(__dirname, '..', 'routes'));
 		const routes: string[] = await readdir(ROUTE_DIR);
 
 		for (const route of routes.filter(route => route.endsWith('.js'))) {
@@ -42,6 +70,7 @@ export default class Server {
 			file.db = this.db;
 			file.logger = this.logger;
 			file.twitter = this.twitter;
+			file.production = this.production;
 
 			const handler: RequestHandler = async (req, res, next): Promise<void> => {
 				try {
