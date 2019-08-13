@@ -38,7 +38,7 @@
                 <img src="<%= user.image %>" class="rounded-circle" width="30"> 
                 </a>
                  <div class="user-dropdown dropdown-menu" aria-labelledby="navbarDropdown">
-                    <% if (user.admin) { %> <a class="user-dropdown-item dropdown-item" href="#"><i class="fa fa-user" aria-hidden="true"></i>لوحة التحكم</a> <%}%>
+                    <% if (user.admin) { %> <a class="user-dropdown-item dropdown-item" href="/dashboard"><i class="fa fa-user" aria-hidden="true"></i>لوحة التحكم</a> <%}%>
                     <a class="user-dropdown-item dropdown-item" data-toggle="modal" data-target="#add" href="#" role="button"><i class="fa fa-plus" aria-hidden="true"></i>إضف ذكر</a>
                     <div class="dropdown-divider"></div>
                     <a class="user-dropdown-item dropdown-item" href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>تسجيل خروج</a>
