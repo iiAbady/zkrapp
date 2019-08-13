@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const browserSync = require('browser-sync').create();
 const nodemon = require('gulp-nodemon');
-const ejs = require('gulp-minify-ejs');
 const fsn = require('fs-nextra');
 const ts = require('gulp-typescript');
 const sourcemaps = require('gulp-sourcemaps');
