@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryColumn, Index, CreateDateColumn } from 'typeorm'
 
 @Entity('azkar')
 export class Azkar {
-	@PrimaryColumn()
+	@PrimaryColumn({ length: 247 })
 	public content!: string;
 
 	@Column({ 'default': 0 })
