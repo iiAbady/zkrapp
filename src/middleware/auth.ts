@@ -3,10 +3,7 @@ import { OAuth } from 'oauth';
 
 export default function authHandler(twitter: OAuth): RequestHandler {
 	return async (req, res, next) => {
-		if (!req.session!.token || !req.session!.tokenSecert) {
-			res.locals.user = null;
-			return next();
-		}
+		if (!req.session!.token || !req.session!.tokenSecert) return next();
 		// eslint-disable-next-line promise/prefer-await-to-callbacks
 		twitter.get('https://api.twitter.com/1.1/account/verify_credentials.json', req.session!.token, req.session!.tokenSecert, (err, data) => {
 			if (err) {
