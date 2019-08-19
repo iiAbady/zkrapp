@@ -7,6 +7,15 @@ button, a, h1, h2, h3, h4, h5, textarea {
     font-family: Tajawal, sans-serif !important;
 }
 
+table {
+    table-layout: fixed; 
+    width: 100%
+  }
+  
+  td {
+    word-wrap: break-word;
+  }
+
 .navbar .nav-link {
     color: #fff !important;
     font-family: Tajawal, sans-serif !important;
@@ -83,6 +92,7 @@ background-position: top calc(.375em + 0.1875rem) left calc(.375em + 0.1875rem) 
     padding: 10px 4px 10px 25px !important;
     text-align: center !important;
 }
+
 
 body::-webkit-scrollbar {
     width: 5px;
