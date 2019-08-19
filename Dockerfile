@@ -24,5 +24,6 @@ ENV NODE_ENV= \
 	session_secret= \
 	DB= \
 	CHECK_RATE= \
-	DAILY_RATE=
+	DAILY_RATE= \
+	OWNER_ID=
 CMD ["node", "dist/zkr.js"]
