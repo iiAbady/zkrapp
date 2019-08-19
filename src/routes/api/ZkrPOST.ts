@@ -5,7 +5,7 @@ import Route from '../../structures/Route';
 export default class PostAdd extends Route {
 	public constructor() {
 		super({
-			id: 'index',
+			id: 'add',
 			method: 'post',
 			route: ['/api/add']
 		});
