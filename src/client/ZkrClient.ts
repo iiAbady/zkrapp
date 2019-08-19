@@ -3,7 +3,7 @@ import Database from '../structures/Database';
 import Scheduler from '../structures/Scheduler';
 import logger from '../util/Logger';
 import { Connection } from 'typeorm';
-import { Azakr } from '../models/Azkar';
+import { Azkar } from '../models/Azkar';
 
 
 export default class ZkrClient extends Twitter {
@@ -12,6 +12,10 @@ export default class ZkrClient extends Twitter {
 	public db!: Connection;
 
 	public scheduler!: Scheduler;
+
+	public get proudction(): boolean {
+		return process.env.NODE_ENV === 'production';
+	}
 
 	public constructor(consumer_key: string, consumer_secret: string, access_token: string, access_token_secret: string) {
 		super({
@@ -28,7 +32,9 @@ export default class ZkrClient extends Twitter {
 		this.db = Database.get('zkr');
 		await this.db.connect();
 		await this.db.synchronize();
-		this.scheduler = new Scheduler(this, this.db.getRepository(Azakr));
-		this.scheduler.init();
+		if (this.proudction) {
+			this.scheduler = new Scheduler(this, this.db.getRepository(Azkar));
+			this.scheduler.init();
+		}
 	}
 }

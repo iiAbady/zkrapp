@@ -1,29 +1,27 @@
+import { RequestHandler } from 'express';
 import { OAuth } from 'oauth';
-import * as session from 'express-session';
 
-export const register = (app: any): void => {
-	const {
-		consumer_key,
-		consumer_secret,
-		callback,
-		session_secret
-	} = process.env;
-
-	const twitter = new OAuth(
-		'https://twitter.com/oauth/request_token',
-		'https://twitter.com/oauth/access_token',
-	    consumer_key!,
-	    consumer_secret!,
-		'1.0A',
-	    callback!,
-		'HMAC-SHA1'
-	);
-
-	app.use(session({
-		resave: true,
-		saveUninitialized: true,
-		secret: session_secret!
-	}));
-
-	app.locals.twitter = twitter;
-};
+export default function authHandler(twitter: OAuth): RequestHandler {
+	return async (req, res, next) => {
+		if (!req.session!.token || !req.session!.tokenSecert) return next();
+		// eslint-disable-next-line promise/prefer-await-to-callbacks
+		twitter.get('https://api.twitter.com/1.1/account/verify_credentials.json', req.session!.token, req.session!.tokenSecert, (err, data) => {
+			if (err) {
+				req.session!.destroy(error => {
+					if (error) {
+						console.error(error);
+						next(error);
+					} else {
+						res.clearCookie('connect.sid');
+						console.error(error);
+						next(err);
+					}
+				});
+			}
+			const { screen_name: username, id_str: id, profile_image_url: image } = JSON.parse(data as string);
+			res.locals.user = { id, username, image };
+			if (id === process.env.OWNER_ID) Object.assign(res.locals.user, { admin: true });
+			next();
+		});
+	};
+}

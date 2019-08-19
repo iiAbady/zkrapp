@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ar-SA" dir="rtl">
+<head>
+<title>ذكر | لوحة التحكم</title>
+<% include ../partials/head %>
+</head>
+<body>
+<% include ../partials/nav %>
+<div class="jumbotron jumbotron-fluid abayro-land-jumbotron" style="border-bottom: 5px solid rgb(0, 102, 255)">
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">المحتوى</th>
+            <th scope="col">#</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% for (const row of rows) { %>
+            <tr id="<%= row.id%>">
+            <td>
+              <button type="button" id="delete" value="<%= row.id%>" class="btn btn-danger action"><i class="fa fa-trash" aria-hidden="true"></i></button>
+              <% if (row.approved === true) { %>
+              <button type="button" id="unapprove" value="<%= row.id%>" class="btn btn-secondary action">عدم الإعتماد <i class="fa fa-times" aria-hidden="true"></i></button>
+              <% } else { %>
+              <button type="button" id="approve" value="<%= row.id%>" class="btn btn-primary action">إعتماد <i class="fa fa-check" aria-hidden="true"></i></button>
+              <% } %>
+            </td>
+            <td><%= row.content %></td>
+            <th scope="row"><%= row.id %></th>
+          </tr>
+        <% } %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+<% include ../partials/footer%>
+<% include ../partials/scripts%>
+</body>
+
+</html>

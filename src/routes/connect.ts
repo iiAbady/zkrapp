@@ -1,21 +1,26 @@
-import * as express from 'express';
-import logger from '../util/Logger';
-import { OAuth } from 'oauth';
+import { Request, Response } from 'express';
+import Route from '../structures/Route';
 
-export const register = (app: express.Application): void => {
-	const auth: OAuth = app.locals.twitter;
+export default class ConnectRoute extends Route {
+	public constructor() {
+		super({
+			id: 'connect',
+			method: 'get',
+			route: ['/connect']
+		});
+	}
 
-	app.get('/connect', (req, res) => {
+	public exec(req: Request, res: Response): void {
 		// eslint-disable-next-line promise/prefer-await-to-callbacks
-		auth.getOAuthRequestToken((err, token, tokenSecert) => {
+		this.twitter!.getOAuthRequestToken((err, request_token, request_tokenSecert) => {
 			if (err) {
-		  logger.error(`[ERROR: API] ${err.data}`);
-		  res.send('An error occur, Please try again.');
+		  this.logger!.error(`[ERROR] ${err.data}`);
+		  const errorData = { code: 400, message: err.data };
+		  throw errorData;
 			} else {
-				// @ts-ignore
-	      req.session.tokenSecert = tokenSecert;
-		  res.redirect(`https://twitter.com/oauth/authorize?oauth_token=${token}`);
+		  req.session!.request_tokenSecert = request_tokenSecert;
+		  res.redirect(`https://twitter.com/oauth/authorize?oauth_token=${request_token}`);
 	  }
 		});
-	});
-};
+	}
+}

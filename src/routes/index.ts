@@ -1,18 +1,16 @@
-import * as express from 'express';
-import * as connect from './connect';
-import * as callback from './callback';
-import { Repository } from 'typeorm';
-import { User } from '../models/Users';
+import { Request, Response } from 'express';
+import Route from '../structures/Route';
 
-export const register = (app: express.Application, repo: Repository<User>): void => {
-	app.get('/', (_, res) => {
-		res.render('pages/index');
-	});
+export default class IndexRoute extends Route {
+	public constructor() {
+		super({
+			id: 'index',
+			method: 'get',
+			route: ['/']
+		});
+	}
 
-	connect.register(app);
-	callback.register(app, repo);
-
-	app.get('*', (_, res) => {
-		res.status(404).render('pages/error');
-	});
-};
+	public exec(req: Request, res: Response): void {
+		res.render('pages/index', { alert: req.query.connected });
+	}
+}
