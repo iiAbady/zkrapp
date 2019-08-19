@@ -20,6 +20,10 @@ client.stream('statuses/sample')
 	.on('warning', (msg): Logger => client.logger.warn(`[WARN: CLIENT] ${msg}`))
 	.on('error', (error: TwitError): Logger => client.logger.error(`[ERROR: CLIENT] ${error.message}\nTwitter Reply:${error.twitterReply}`));
 
+
+if (process.env.NODE_ENV === 'production') app.set('trust proxy', 1);
+
+
 app
 	.use(express.urlencoded({ extended: true }))
 	.use(express.json({ limit: '1mb' }))
