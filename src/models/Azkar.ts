@@ -1,8 +1,11 @@
-import { Entity, Column, PrimaryColumn, Index, CreateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, Index, CreateDateColumn } from 'typeorm';
 
 @Entity('azkar')
 export class Azkar {
-	@PrimaryColumn({ length: 247 })
+	@PrimaryGeneratedColumn()
+	public id!: number;
+
+	@Column({ length: 247 })
 	public content!: string;
 
 	@Column({ 'default': 0 })
