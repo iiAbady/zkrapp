@@ -18,7 +18,7 @@ export default function authHandler(twitter: OAuth): RequestHandler {
 					}
 				});
 			}
-			const { screen_name: username, id_str: id, profile_image_url: image } = JSON.parse(data as string);
+			const { screen_name: username, id_str: id, profile_image_url_https: image } = JSON.parse(data as string);
 			res.locals.user = { id, username, image };
 			if (id === process.env.OWNER_ID) Object.assign(res.locals.user, { admin: true });
 			next();
