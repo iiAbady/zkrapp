@@ -27,7 +27,7 @@ export default class PostAdd extends Route {
 
 		const zkr = new Azkar();
 		zkr.content = data.content;
-		if (res.locals.admin) zkr.approved = true;
+		if (res.locals.user.admin) zkr.approved = true;
 		azkar.save(zkr);
 
 		res.sendStatus(200);
