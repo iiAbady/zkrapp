@@ -8,7 +8,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: ESLint
-      uses: iCrawl/eslint-action-marine@master
+      uses: iCrawl/action-eslint@v1
       env:
         FOLDERS: src
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
