@@ -14,8 +14,7 @@ LABEL maintainer "Abady <gamersspeaks@gmail.com>"
 WORKDIR /usr/src/zkrapp
 COPY --from=build /usr/src/zkrapp .
 COPY . .
-RUN yarn build \
-&& yarn temp-views
+RUN yarn build
 ENV NODE_ENV= \
 	consumer_key= \
 	consumer_secret= \
