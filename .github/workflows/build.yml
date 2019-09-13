@@ -13,7 +13,7 @@ jobs:
         uses: azure/container-actions/docker-login@master
         with:
           username: ${{ github.actor }}
-          password: ${{ secrets.DOCKER_PAT }}
+          password: ${{ secrets.DOCKER_PASS }}
           login-server: 'docker.pkg.github.com'
 
       - name: build and push
