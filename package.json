@@ -8,8 +8,6 @@
 	"private": false,
 	"scripts": {
 		"build": "gulp",
-		"temp-build": "tsc",
-		"temp-views": "gulp views",
 		"lint": "eslint src --ext .ts",
 		"watch": "gulp watch"
 	},
@@ -24,7 +22,7 @@
 		"oauth": "^0.9.15",
 		"pg": "^7.12.1",
 		"twit": "^2.2.11",
-		"typeorm": "^0.2.18",
+		"typeorm": "^0.2.19",
 		"winston": "^3.2.1"
 	},
 	"devDependencies": {
