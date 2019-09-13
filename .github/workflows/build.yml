@@ -1,0 +1,25 @@
+on:
+  push:
+
+jobs:
+  publish:
+    name: publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: Login
+        uses: azure/container-actions/docker-login@master
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.DOCKER_PAT }}
+          login-server: 'docker.pkg.github.com'
+
+      - name: build and push
+        run: |
+          VERSION=$(sed -nE 's/^\s*"version": "(.*?)",$/\1/p' package.json)
+          docker build . --file Dockerfile --tag docker.pkg.github.com/Abady321x123/zkrapp/app:$VERSION
+          docker push docker.pkg.github.com/Abady321x123/zkrapp/app:$VERSION
+      - name: Logout
+        uses: azure/container-actions/docker-logout@master
