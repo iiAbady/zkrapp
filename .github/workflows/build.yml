@@ -19,7 +19,7 @@ jobs:
       - name: build and push
         run: |
           VERSION=$(sed -nE 's/^\s*"version": "(.*?)",$/\1/p' package.json)
-          docker build . --file Dockerfile --tag docker.pkg.github.com/Abady321x123/zkrapp/app:$VERSION
-          docker push docker.pkg.github.com/Abady321x123/zkrapp/app:$VERSION
+          docker build . --file Dockerfile --tag docker.pkg.github.com/abady321x123/zkrapp/app:$VERSION
+          docker push docker.pkg.github.com/abady321x123/zkrapp/app:$VERSION
       - name: Logout
         uses: azure/container-actions/docker-logout@master
