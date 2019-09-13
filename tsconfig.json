@@ -12,14 +12,17 @@
 			"esnext.symbol"
 		],
 		"declaration": false,
-		"sourceMap": true,
-		"removeComments": false,
+		"sourceMap": false,
+		"inlineSourceMap": true,
+		"inlineSources": true,
+		"removeComments": true,
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
 		"alwaysStrict": true,
 		"resolveJsonModule": true,
 		"allowSyntheticDefaultImports": true,
-		"pretty": true
+		"pretty": true,
+		"outDir": "dist"
 	},
 	"include": [
 		"src/**/*"
