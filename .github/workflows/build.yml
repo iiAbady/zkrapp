@@ -19,7 +19,7 @@ jobs:
 
       - name: build and push
         run: |
-          VERSION=$(sed -nE 's/^\s*"version": "(.*?)",$/\1/p' package.json)
+          test $(git log -1 --pretty=%B) = "release: version" && VERSION=$(sed -nE 's/^\s*"version": "(.*?)",$/\1/p' package.json) || VERSION="latest"
           docker build --tag docker.pkg.github.com/abady321x123/zkrapp/app:$VERSION .
           docker push docker.pkg.github.com/abady321x123/zkrapp/app:$VERSION
       - name: Logout
