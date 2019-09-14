@@ -1,7 +1,8 @@
 name: 'Docker'
 on:
   push:
-
+    branches:
+      - master
 jobs:
   publish:
     name: publish
