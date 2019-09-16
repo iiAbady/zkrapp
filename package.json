@@ -35,7 +35,7 @@
 		"@typescript-eslint/eslint-plugin": "^1.13.0",
 		"@typescript-eslint/parser": "^1.13.0",
 		"browser-sync": "^2.26.7",
-		"eslint": "^6.3.0",
+		"eslint": "^6.4.0",
 		"eslint-config-marine": "^3.0.3",
 		"gulp": "^4.0.2",
 		"gulp-nodemon": "^2.4.2",
