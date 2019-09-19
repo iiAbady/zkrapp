@@ -1,6 +1,6 @@
 name: 'Lint'
 on:
-  push:
+  push: [push, pull_request]
 
 jobs:
   eslint:
