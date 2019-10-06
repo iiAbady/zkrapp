@@ -1,5 +1,5 @@
 import * as session from 'express-session';
-const memorystore = require('memorystore')(session);
+const memorystore = require('memorystore')(session); // eslint-disable-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports
 
 export default session({
 	resave: true,

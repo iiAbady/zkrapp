@@ -1,59 +1,66 @@
 <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="add" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-        <button type="button" class="float-left close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <h3 class="modal-title" id="add">إضافة ذكر</h5>
-          <div class="alert alert-warning alert-dismissible text-right fade show" role="alert">
-           <div class="inline font-weight-bold"> تذكر إنه يتم التحقق من جميع الاذكار المرسلة قبل إعتمادها في التطبيق. </div>
-          </div>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="form-group">
-              <label for="content" class="float-right col-form-label">محتوى الذكر</label>
-              <textarea class="form-control" id="content"></textarea>
-              <span class="checker"></span>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" id="zkrSubmit" class="submitButton btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i> إرسال الذكر</button>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="float-left close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h3 class="modal-title" id="add">إضافة ذكر</h5>
+					<div class="alert alert-warning alert-dismissible text-right fade show" role="alert">
+						<div class="inline font-weight-bold"> تذكر إنه يتم التحقق من جميع الاذكار المرسلة قبل إعتمادها
+							في التطبيق. </div>
+					</div>
+			</div>
+			<div class="modal-body">
+				<form>
+					<div class="form-group">
+						<label for="content" class="float-right col-form-label">محتوى الذكر</label>
+						<textarea class="form-control" id="content"></textarea>
+						<span class="checker"></span>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" id="zkrSubmit" class="submitButton btn btn-primary"><i class="fa fa-plus-circle"
+						aria-hidden="true"></i> إرسال الذكر</button>
+			</div>
+		</div>
+	</div>
+</div>
 
-<nav class="navbar navbar-expand-lg bg-transparent shadow-none">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-        <%if (locals.user) {%>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="<%= user.image %>" class="rounded-circle" width="30"> 
-                </a>
-                 <div class="user-dropdown dropdown-menu" aria-labelledby="navbarDropdown">
-                    <% if (user.admin) { %> <a class="user-dropdown-item dropdown-item" href="/dashboard"><i class="fa fa-user" aria-hidden="true"></i>لوحة التحكم</a> <%}%>
+<nav class="navbar navbar-expand-lg">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+		aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav ml-auto">
+			<%if (locals.user) {%>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false">
+					<img src="<%= user.image %>" class="rounded-circle" width="30">
+				</a>
+				<div class="user-dropdown dropdown-menu" aria-labelledby="navbarDropdown">
+					<% if (user.admin) { %> <a class="user-dropdown-item dropdown-item" href="/dashboard"><i
+							class="fa fa-user" aria-hidden="true"></i>لوحة التحكم</a> <%}%>
                     <a class="user-dropdown-item dropdown-item" data-toggle="modal" data-target="#add" href="#" role="button"><i class="fa fa-plus" aria-hidden="true"></i>إضف ذكر</a>
                     <div class="dropdown-divider"></div>
                     <a class="user-dropdown-item dropdown-item" href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>تسجيل خروج</a>
                  </div>
             </li>
             <%}%>
-            <li class="nav-item active">
-                <a class="nav-link" href="/">الرئيسية</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">الأذكار</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="https://twitter.com/ii_Abady/status/1154443930059988992">إدعمني</a>
-            </li>
-        </ul>
-        <iframe src="https://ghbtns.com/github-btn.html?user=Abady321x123&repo=zkrapp&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px" style="margin-left: 20px"></iframe>    </div>
+			<li class="nav-item active">
+				<a class="nav-link" href="/">الرئيسية</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">الأذكار</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="https://twitter.com/ii_Abady/status/1154443930059988992">إدعمني</a>
+			</li>
+		</ul>
+		<iframe src="https://ghbtns.com/github-btn.html?user=Abady321x123&repo=zkrapp&type=star&count=true&size=large"
+			frameborder="0" scrolling="0" width="160px" height="30px" style="margin-left: 20px"></iframe>
+	</div>
 </nav>

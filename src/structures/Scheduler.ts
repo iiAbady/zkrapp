@@ -33,7 +33,7 @@ export default class Scheduler {
 			try {
 				// @ts-ignore
 				this.client.setAuth({ access_token: token, access_token_secret: token_secert });
-				this.client.tweet(zkr!.content);
+				this.client.tweet(zkr.content);
 			} catch (error) {
 				this.client.logger.error(`[SCHEDULER] There was error sending to this user (${token}): `, error);
 			}

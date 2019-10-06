@@ -42,6 +42,7 @@ export default class Server {
 		const methods: string[] = await readdir(API_DIR);
 
 		for (const method of methods.filter(method => method.endsWith('.js'))) {
+			// eslint-disable-next-line @typescript-eslint/no-require-imports
 			const file: Route = new (require(`${API_DIR}/${method}`).default)();
 
 			file.db = this.db;
@@ -65,6 +66,7 @@ export default class Server {
 		const routes: string[] = await readdir(ROUTE_DIR);
 
 		for (const route of routes.filter(route => route.endsWith('.js'))) {
+			// eslint-disable-next-line @typescript-eslint/no-require-imports
 			const file: Route = new (require(`${ROUTE_DIR}/${route}`).default)();
 
 			file.db = this.db;
