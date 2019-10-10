@@ -31,7 +31,7 @@
 		"@types/express-session": "^1.15.14",
 		"@types/moment-timezone": "^0.5.12",
 		"@types/oauth": "^0.9.1",
-		"@types/twit": "^2.2.22",
+		"@types/twit": "^2.2.23",
 		"@typescript-eslint/eslint-plugin": "^2.3.2",
 		"@typescript-eslint/parser": "^2.3.2",
 		"browser-sync": "^2.26.7",
