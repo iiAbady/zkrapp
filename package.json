@@ -18,7 +18,7 @@
 		"express-session": "^1.16.2",
 		"fs-nextra": "^0.4.5",
 		"memorystore": "^1.6.1",
-		"moment-timezone": "^0.5.26",
+		"moment-timezone": "^0.5.27",
 		"oauth": "^0.9.15",
 		"pg": "^7.12.1",
 		"twit": "^2.2.11",
