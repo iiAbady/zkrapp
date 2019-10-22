@@ -7,6 +7,6 @@ export default session({
 	secret: process.env.session_secret!,
 	cookie: { maxAge: 6048e5, secure: process.env.NODE_ENV === 'production', signed: true },
 	store: new memorystore({
-		checkPeriod: 6048e5
-	})
+		checkPeriod: 6048e5,
+	}),
 });

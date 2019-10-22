@@ -22,9 +22,7 @@
 		"resolveJsonModule": true,
 		"allowSyntheticDefaultImports": true,
 		"pretty": true,
-		"outDir": "dist"
-	},
-	"include": [
-		"src/**/*"
-	]
+		"outDir": "dist",
+		"sourceRoot": "./src/"
+	}
 }

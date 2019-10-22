@@ -5,7 +5,7 @@ export class User {
 	@PrimaryColumn({ type: 'text' })
 	public token!: string;
 
-    @Index()
-    @Column({ type: 'text' })
+	@Index()
+	@Column({ type: 'text' })
 	public token_secert!: string;
 }

@@ -7,7 +7,7 @@ export default class PutUpdate extends Route {
 		super({
 			id: 'update',
 			method: 'put',
-			route: ['/api/update']
+			route: ['/api/update'],
 		});
 	}
 

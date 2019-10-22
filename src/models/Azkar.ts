@@ -8,7 +8,7 @@ export class Azkar {
 	@Column({ length: 247 })
 	public content!: string;
 
-	@Column({ 'default': 0 })
+	@Column({ default: 0 })
 	public sends!: number;
 
 	@Column({ type: 'timestamptz', nullable: true })
@@ -17,7 +17,7 @@ export class Azkar {
 	@CreateDateColumn()
 	public createdAt!: Date;
 
-    @Index()
-    @Column({ 'default': false })
+	@Index()
+	@Column({ default: false })
 	public approved!: boolean;
 }

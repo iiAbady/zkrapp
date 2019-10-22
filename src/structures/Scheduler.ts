@@ -14,7 +14,11 @@ export default class Scheduler {
 
 	protected checkInterval!: NodeJS.Timeout;
 
-	public constructor(client: ZkrClient, repository: Repository<Azkar>, { checkRate = Number(process.env.CHECK_RATE), dailyRate = Number(process.env.DAILY_RATE) } = {}) {
+	public constructor(
+		client: ZkrClient,
+		repository: Repository<Azkar>,
+		{ checkRate = Number(process.env.CHECK_RATE), dailyRate = Number(process.env.DAILY_RATE) } = {},
+	) {
 		this.client = client;
 		this.repo = repository;
 		this.checkRate = checkRate;
@@ -59,18 +63,18 @@ export default class Scheduler {
 			return;
 		}
 		/**
-			* @NOTE Posting identical Tweets over multiple hours or days is against Twitter ToS
-			* @NOTE Please make sure that dailyRate is less than a good amount of time that It won't make it look like spammy!
-		    * @NOTE Checkout https://help.twitter.com/en/rules-and-policies/twitter-automation
-		**/
+		 * @NOTE Posting identical Tweets over multiple hours or days is against Twitter ToS
+		 * @NOTE Please make sure that dailyRate is less than a good amount of time that It won't make it look like spammy!
+		 * @NOTE Checkout https://help.twitter.com/en/rules-and-policies/twitter-automation
+		 **/
 		const zkr = await this.repo.findOne({
 			where: [
 				{ last_sent: IsNull(), approved: true },
-				{ last_sent: LessThan(new Date(Date.now() - this.dailyRate)), approved: true }
+				{ last_sent: LessThan(new Date(Date.now() - this.dailyRate)), approved: true },
 			],
 			order: {
-				sends: 'ASC'
-			}
+				sends: 'ASC',
+			},
 		});
 
 		if (!zkr) {

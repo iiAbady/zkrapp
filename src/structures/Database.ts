@@ -7,7 +7,7 @@ connectionManager.create({
 	name: 'zkr',
 	type: 'postgres',
 	url: process.env.DB,
-	entities: [Azkar, User]
+	entities: [Azkar, User],
 });
 
 export default connectionManager;

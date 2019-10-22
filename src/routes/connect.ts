@@ -6,7 +6,7 @@ export default class ConnectRoute extends Route {
 		super({
 			id: 'connect',
 			method: 'get',
-			route: ['/connect']
+			route: ['/connect'],
 		});
 	}
 
@@ -14,13 +14,13 @@ export default class ConnectRoute extends Route {
 		// eslint-disable-next-line promise/prefer-await-to-callbacks
 		this.twitter!.getOAuthRequestToken((err, request_token, request_tokenSecert) => {
 			if (err) {
-		  this.logger!.error(`[ERROR] ${err.data}`);
-		  const errorData = { code: 400, message: err.data };
-		  throw errorData;
+				this.logger!.error(`[ERROR] ${err.data}`);
+				const errorData = { code: 400, message: err.data };
+				throw errorData;
 			} else {
-		  req.session!.request_tokenSecert = request_tokenSecert;
-		  res.redirect(`https://twitter.com/oauth/authorize?oauth_token=${request_token}`);
-	  }
+				req.session!.request_tokenSecert = request_tokenSecert;
+				res.redirect(`https://twitter.com/oauth/authorize?oauth_token=${request_token}`);
+			}
 		});
 	}
 }

@@ -7,7 +7,7 @@ export default class LogoutRoute extends Route {
 			auth: true,
 			id: 'logout',
 			method: 'get',
-			route: ['/logout']
+			route: ['/logout'],
 		});
 	}
 

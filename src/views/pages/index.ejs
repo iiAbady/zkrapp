@@ -1,34 +1,39 @@
 <!DOCTYPE html>
 <html lang="ar-SA" dir="rtl">
+
 <head>
-<title>ذكر | بوت لنشر الاذكار على حسابك في توتير يومياً</title>
-<% include ../partials/head%>
+	<title>ذكر | بوت لنشر الاذكار على حسابك في توتير يومياً</title>
+	<% include ../partials/head%>
 </head>
+
 <body>
 
-<%if (locals.user && alert) { %>
-<div class="alert alert-success alert-dismissible text-right fade show" role="alert">
-  <div class="inline font-weight-bold" style="font-size: medium"> شكراً <%= user.username%>, سيتم نشر ذكر لك كل ساعة من الان. </div>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="left:0">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-<%}%>
+	<%if (locals.user && alert[0]) { %>
+	<div class="alert alert-success alert-dismissible text-right fade show" role="alert">
+			<% const logged = alert[0].replace('{user}', user.username) %>
+			<div class="inline font-weight-bold" style="font-size: medium"><%= logged%></div>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close" style="left:0; right:auto">
+				<span aria-hidden="true">&times;</span>
+			</button>
+	</div>
+	<%}%>
 
 <% include ../partials/nav %>
 
-<div class="jumbotron zkr-jumbotron text-right">
-    <h1 class="display-4 j-title">تطبيق ذكر</h1>
-    <p class="lead j-subtitle">تطبيق وبوت تويتر لنشر الأذكار في حسابك في تويتر<br/>مع إمكانية التحكم في أوقات الأذكار</p>
-    <% if (locals.user) { %>
-    <a class="btn btn-lg" href="#" role="button">مرحباً بك يا <%= user.username%></a>
-    <% } else { %>
-    <a class="btn btn-lg" href="/connect" role="button">إبدأ الإستخدام</a>
-    <%}%>
+	<div class="jumbotron zkr-jumbotron text-right">
+		<h1 class="display-4 j-title">تطبيق ذكر</h1>
+		<p class="lead j-subtitle">تطبيق وبوت تويتر لنشر الأذكار في حسابك في تويتر<br />مع إمكانية التحكم في أوقات
+			الأذكار</p>
+		<% if (locals.user) { %>
+		<a class="btn btn-lg" href="#" role="button">مرحباً بك يا <%= user.username%></a>
+		<% } else { %>
+		<a class="btn btn-lg" href="/connect" role="button">إبدأ الإستخدام</a>
+		<%}%>
     <a class="btn btn-lg btn-outline-default" href="#" role="button">تعرف على المزيد</a>
 </div>
 
 <% include ../partials/footer%>
-<% include ../partials/scripts%>
+		<% include ../partials/scripts%>
 </body>
+
 </html>

@@ -16,21 +16,21 @@ interface IRouteOptions {
 
 export default class Route {
 	public constructor(options?: IRouteOptions) {
-	  this.auth = options!.auth;
+		this.auth = options!.auth;
 
-	  this.id = options!.id;
+		this.id = options!.id;
 
-	  this.method = options!.method;
+		this.method = options!.method;
 
-	  this.route = options!.route;
+		this.route = options!.route;
 
-	  this.twitter = options!.twitter;
+		this.twitter = options!.twitter;
 
-	  this.logger = null;
+		this.logger = null;
 
-	  this.db = null;
+		this.db = null;
 
-	  this.production = false;
+		this.production = false;
 	}
 
 	public auth?: boolean | 'admin';
@@ -44,6 +44,6 @@ export default class Route {
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	public exec(req: Request, res: Response, next?: NextFunction): void {
-	  throw new Error('You cannot invoke this base class method.');
+		throw new Error('You cannot invoke this base class method.');
 	}
 }

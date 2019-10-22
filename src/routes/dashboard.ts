@@ -8,12 +8,12 @@ export default class LogoutRoute extends Route {
 			auth: 'admin',
 			id: 'dashboard',
 			method: 'get',
-			route: ['/dashboard']
+			route: ['/dashboard'],
 		});
 	}
 
 	public async exec(req: Request, res: Response): Promise<void> {
-		const azkar = await this.db!.getRepository(Azkar).find() || [];
+		const azkar = (await this.db!.getRepository(Azkar).find()) || [];
 		// @ts-ignore
 		azkar.sort((a, b) => {
 			if (a.approved === b.approved) return a.id - b.id;

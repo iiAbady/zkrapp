@@ -11,7 +11,6 @@ import { Connection } from 'typeorm';
 import authHandler from '../middleware/auth';
 import reautHandler from '../middleware/reauth';
 
-
 export default class Server {
 	public constructor(port: string) {
 		this.twitter = twitter;
@@ -23,7 +22,6 @@ export default class Server {
 	public logger: Logger;
 	public db!: Connection;
 	public port: string;
-
 
 	public get production(): boolean {
 		return process.env.NODE_ENV === 'production';
@@ -43,7 +41,7 @@ export default class Server {
 
 		for (const method of methods.filter(method => method.endsWith('.js'))) {
 			// eslint-disable-next-line @typescript-eslint/no-require-imports
-			const file: Route = new (require(`${API_DIR}/${method}`).default)();
+			const file: Route = new (require(`${API_DIR}/${method}`)).default();
 
 			file.db = this.db;
 			file.logger = this.logger;
@@ -67,7 +65,7 @@ export default class Server {
 
 		for (const route of routes.filter(route => route.endsWith('.js'))) {
 			// eslint-disable-next-line @typescript-eslint/no-require-imports
-			const file: Route = new (require(`${ROUTE_DIR}/${route}`).default)();
+			const file: Route = new (require(`${ROUTE_DIR}/${route}`)).default();
 
 			file.db = this.db;
 			file.logger = this.logger;
@@ -76,7 +74,7 @@ export default class Server {
 
 			const handler: RequestHandler = async (req, res, next): Promise<void> => {
 				try {
-				    file.exec(req, res, next);
+					file.exec(req, res, next);
 				} catch (error) {
 					if (error.stack && error.code >= 500) this.logger.info(error);
 
@@ -89,7 +87,7 @@ export default class Server {
 
 		server.all('*', (_, res) => res.render('pages/404'));
 
-		server.listen(this.port, () => this.logger.info(`> Server ready at http://localhost:${this.port}`));
+		server.listen(this.port, () => this.logger.info(`> Server ready at http:// localhost:${this.port}`));
 		return this;
 	}
 }

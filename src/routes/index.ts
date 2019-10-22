@@ -6,11 +6,11 @@ export default class IndexRoute extends Route {
 		super({
 			id: 'index',
 			method: 'get',
-			route: ['/']
+			route: ['/'],
 		});
 	}
 
 	public exec(req: Request, res: Response): void {
-		res.render('pages/index', { alert: req.query.connected });
+		res.render('pages/index', { alert: req.flash('loginInfo') });
 	}
 }

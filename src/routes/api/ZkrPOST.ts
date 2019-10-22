@@ -7,7 +7,7 @@ export default class PostAdd extends Route {
 		super({
 			id: 'add',
 			method: 'post',
-			route: ['/api/add']
+			route: ['/api/add'],
 		});
 	}
 
