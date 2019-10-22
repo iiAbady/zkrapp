@@ -22,7 +22,7 @@
 		"oauth": "^0.9.15",
 		"pg": "^7.12.1",
 		"twit": "^2.2.11",
-		"typeorm": "^0.2.19",
+		"typeorm": "^0.2.20",
 		"winston": "^3.2.1"
 	},
 	"devDependencies": {
