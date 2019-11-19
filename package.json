@@ -14,7 +14,7 @@
 	"dependencies": {
 		"connect-flash": "^0.1.1",
 		"dotenv": "^8.2.0",
-		"ejs": "^2.7.1",
+		"ejs": "^2.7.3",
 		"express": "^4.17.1",
 		"express-session": "^1.17.0",
 		"fs-nextra": "^0.4.5",
