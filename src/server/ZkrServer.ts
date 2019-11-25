@@ -41,7 +41,7 @@ export default class Server {
 
 		for (const method of methods.filter(method => method.endsWith('.js'))) {
 			// eslint-disable-next-line @typescript-eslint/no-require-imports
-			const file: Route = new (require(`${API_DIR}/${method}`)).default();
+			const file: Route = new (require(`${API_DIR}/${method}`).default)();
 
 			file.db = this.db;
 			file.logger = this.logger;
@@ -65,7 +65,7 @@ export default class Server {
 
 		for (const route of routes.filter(route => route.endsWith('.js'))) {
 			// eslint-disable-next-line @typescript-eslint/no-require-imports
-			const file: Route = new (require(`${ROUTE_DIR}/${route}`)).default();
+			const file: Route = new (require(`${ROUTE_DIR}/${route}`).default)();
 
 			file.db = this.db;
 			file.logger = this.logger;
