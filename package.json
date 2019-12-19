@@ -21,7 +21,7 @@
 		"memorystore": "^1.6.1",
 		"moment-timezone": "^0.5.27",
 		"oauth": "^0.9.15",
-		"pg": "^7.14.0",
+		"pg": "^7.15.1",
 		"twit": "^2.2.11",
 		"typeorm": "^0.2.21",
 		"winston": "^3.2.1"
