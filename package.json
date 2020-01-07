@@ -35,7 +35,7 @@
 		"@types/oauth": "^0.9.1",
 		"@types/twit": "^2.2.23",
 		"@typescript-eslint/eslint-plugin": "^2.10.0",
-		"@typescript-eslint/parser": "^2.10.0",
+		"@typescript-eslint/parser": "^2.15.0",
 		"browser-sync": "^2.26.7",
 		"eslint": "^6.7.2",
 		"eslint-config-marine": "^5.3.2",
