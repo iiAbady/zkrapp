@@ -34,7 +34,7 @@
 		"@types/moment-timezone": "^0.5.12",
 		"@types/oauth": "^0.9.1",
 		"@types/twit": "^2.2.23",
-		"@typescript-eslint/eslint-plugin": "^2.10.0",
+		"@typescript-eslint/eslint-plugin": "^2.17.0",
 		"@typescript-eslint/parser": "^2.10.0",
 		"browser-sync": "^2.26.7",
 		"eslint": "^6.7.2",
