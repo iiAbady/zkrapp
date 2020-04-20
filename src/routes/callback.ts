@@ -14,7 +14,6 @@ export default class CallbackRoute extends Route {
 	public exec(req: Request, res: Response): void {
 		const { oauth_token, oauth_verifier } = req.query;
 
-		/* eslint-disable promise/prefer-await-to-callbacks */
 		this.twitter!.getOAuthAccessToken(
 			oauth_token,
 			req.session!.tokenSecert,

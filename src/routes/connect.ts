@@ -11,7 +11,6 @@ export default class ConnectRoute extends Route {
 	}
 
 	public exec(req: Request, res: Response): void {
-		// eslint-disable-next-line promise/prefer-await-to-callbacks
 		this.twitter!.getOAuthRequestToken((err, request_token, request_tokenSecert) => {
 			if (err) {
 				this.logger!.error(`[ERROR] ${err.data}`);
