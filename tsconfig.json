@@ -2,7 +2,6 @@
 	"compilerOptions": {
 		"strict": true,
 		"module": "commonjs",
-		"moduleResolution": "node",
 		"target": "es2018",
 		"lib": [
 			"esnext",
@@ -15,11 +14,13 @@
 		"sourceMap": false,
 		"inlineSourceMap": true,
 		"inlineSources": true,
+		"incremental": true,
+		"importHelpers": true,
+		"noEmitHelpers": true,
 		"removeComments": true,
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
 		"alwaysStrict": true,
-		"resolveJsonModule": true,
 		"allowSyntheticDefaultImports": true,
 		"pretty": true,
 		"outDir": "dist",

@@ -15,10 +15,10 @@ export default class CallbackRoute extends Route {
 		const { oauth_token, oauth_verifier } = req.query;
 
 		this.twitter!.getOAuthAccessToken(
-			oauth_token,
+			oauth_token as string,
 			req.session!.tokenSecert,
-			oauth_verifier,
-			async (err, token, tokenSecert) => {
+			oauth_verifier as string,
+			async (err: any, token: string, tokenSecert: string) => {
 				if (err) {
 					this.logger!.error(`[ERROR] ${err.data}`);
 					res.redirect('/connect');
