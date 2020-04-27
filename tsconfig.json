@@ -1,6 +1,7 @@
 {
 	"compilerOptions": {
 		"strict": true,
+		"moduleResolution": "node",
 		"module": "commonjs",
 		"target": "es2018",
 		"lib": [
@@ -10,17 +11,16 @@
 			"esnext.intl",
 			"esnext.symbol"
 		],
+		"alwaysStrict": true,
 		"declaration": false,
 		"sourceMap": false,
 		"inlineSourceMap": true,
 		"inlineSources": true,
-		"incremental": true,
 		"importHelpers": true,
 		"noEmitHelpers": true,
 		"removeComments": true,
 		"experimentalDecorators": true,
 		"emitDecoratorMetadata": true,
-		"alwaysStrict": true,
 		"allowSyntheticDefaultImports": true,
 		"pretty": true,
 		"outDir": "dist",
