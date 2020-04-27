@@ -12,7 +12,7 @@ export default class PutUpdate extends Route {
 	}
 
 	public async exec(req: Request, res: Response): Promise<void> {
-		if (!res.locals.user || !res.locals.user.admin) {
+		if (!res.locals.user?.admin) {
 			const errorData = { code: 401, message: 'Unauthorized' };
 			throw errorData;
 		}
