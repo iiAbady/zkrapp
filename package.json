@@ -25,7 +25,7 @@
 		"tslib": "^2.0.0",
 		"twit": "^2.2.11",
 		"typeorm": "^0.2.24",
-		"winston": "^3.2.1"
+		"winston": "^3.3.2"
 	},
 	"devDependencies": {
 		"@types/connect-flash": "^0.0.35",
