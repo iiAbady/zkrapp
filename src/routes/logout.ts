@@ -12,7 +12,7 @@ export default class LogoutRoute extends Route {
 	}
 
 	public exec(req: Request, res: Response): void {
-		req.session!.destroy(error => {
+		req.session.destroy(error => {
 			if (error) {
 				this.logger!.error(`Error occur in ${this.route![0]}`, error);
 				const errorData = { message: error.message };

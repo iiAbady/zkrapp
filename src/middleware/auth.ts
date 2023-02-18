@@ -3,14 +3,14 @@ import { OAuth } from 'oauth';
 
 export default function authHandler(twitter: OAuth): RequestHandler {
 	return async (req, res, next) => {
-		if (!req.session!.token || !req.session!.tokenSecert) return next();
+		if (!req.session.token || !req.session.tokenSecert) return next();
 		twitter.get(
 			'https://api.twitter.com/1.1/account/verify_credentials.json',
-			req.session!.token,
-			req.session!.tokenSecert,
+			req.session.token,
+			req.session.tokenSecert,
 			(err, data) => {
 				if (err) {
-					req.session!.destroy(error => {
+					req.session.destroy(error => {
 						if (error) {
 							console.error(error);
 							next(error);

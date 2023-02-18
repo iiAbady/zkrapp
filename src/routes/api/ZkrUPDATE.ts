@@ -1,5 +1,5 @@
-import { Azkar } from '../../models/Azkar';
 import { Request, Response } from 'express';
+import { Azkar } from '../../models/Azkar';
 import Route from '../../structures/Route';
 
 export default class PutUpdate extends Route {

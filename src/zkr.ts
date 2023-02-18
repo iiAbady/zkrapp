@@ -7,13 +7,13 @@ interface TwitError {
 }
 
 import './util/Env';
-import { Logger } from 'winston';
 import { join } from 'path';
 import * as express from 'express';
-import session from './middleware/session';
+import { Logger } from 'winston';
 import Client from './client/ZkrClient';
-import Server from './server/ZkrServer';
 import flash from './middleware/flash';
+import session from './middleware/session';
+import Server from './server/ZkrServer';
 
 const app = express();
 

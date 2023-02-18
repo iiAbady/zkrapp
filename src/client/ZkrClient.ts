@@ -1,9 +1,9 @@
 import * as Twitter from 'twit';
+import { Connection } from 'typeorm';
+import { Azkar } from '../models/Azkar';
 import Database from '../structures/Database';
 import Scheduler from '../structures/Scheduler';
 import logger from '../util/Logger';
-import { Connection } from 'typeorm';
-import { Azkar } from '../models/Azkar';
 
 export default class ZkrClient extends Twitter {
 	public logger = logger;
@@ -16,7 +16,12 @@ export default class ZkrClient extends Twitter {
 		return process.env.NODE_ENV === 'production';
 	}
 
-	public constructor(consumer_key: string, consumer_secret: string, access_token: string, access_token_secret: string) {
+	public constructor(
+		consumer_key: string,
+		consumer_secret: string,
+		access_token: string,
+		access_token_secret: string
+	) {
 		super({
 			consumer_key,
 			consumer_secret,
@@ -26,7 +31,9 @@ export default class ZkrClient extends Twitter {
 	}
 
 	public tweet = (content: string) =>
-		this.post('statuses/update', { status: `${content}\n\n#ZkrApp\nhttps://zkr.abady.me` });
+		this.post('statuses/update', {
+			status: `${content}\n\n#ZkrApp\nhttps://zkr.abady.me`,
+		});
 
 	public async start(): Promise<void> {
 		this.db = Database.get('zkr');
@@ -34,7 +41,7 @@ export default class ZkrClient extends Twitter {
 		await this.db.synchronize();
 		if (this.proudction) {
 			this.scheduler = new Scheduler(this, this.db.getRepository(Azkar));
-			this.scheduler.init();
+			void this.scheduler.init();
 		}
 	}
 }

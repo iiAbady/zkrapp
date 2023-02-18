@@ -17,7 +17,7 @@ export default class ConnectRoute extends Route {
 				const errorData = { code: 400, message: err.data };
 				throw errorData;
 			} else {
-				req.session!.request_tokenSecert = request_tokenSecert;
+				req.session.request_tokenSecert = request_tokenSecert;
 				res.redirect(`https://twitter.com/oauth/authorize?oauth_token=${request_token}`);
 			}
 		});

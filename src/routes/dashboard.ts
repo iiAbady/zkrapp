@@ -14,7 +14,7 @@ export default class LogoutRoute extends Route {
 
 	public async exec(req: Request, res: Response): Promise<void> {
 		const azkar = (await this.db!.getRepository(Azkar).find()) || [];
-		// @ts-ignore
+		// @ts-expect-error
 		azkar.sort((a, b) => {
 			if (a.approved === b.approved) return a.id - b.id;
 			else if (a.approved) return -1;

@@ -1,5 +1,5 @@
-import { createLogger, transports, format } from 'winston';
 import * as moment from 'moment-timezone';
+import { createLogger, transports, format } from 'winston';
 
 const time = (): string =>
 	moment()
@@ -8,7 +8,7 @@ const time = (): string =>
 
 export default createLogger({
 	format: format.combine(
-		// @ts-ignore
+		// @ts-expect-error
 		format.timestamp({ format: time }),
 		format.colorize({ level: true }),
 		format.printf((info: any): string => {

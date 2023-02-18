@@ -1,15 +1,15 @@
 import { resolve, join } from 'path';
-import { readdir } from 'fs-nextra';
 import { Express, RequestHandler } from 'express';
-import Database from '../structures/Database';
-import logger from '../util/Logger';
-import { Logger } from 'winston';
-import Route from '../structures/Route';
+import { readdir } from 'fs-nextra';
 import { OAuth } from 'oauth';
-import { twitter } from '../auth/auth';
 import { Connection } from 'typeorm';
+import { Logger } from 'winston';
+import { twitter } from '../auth/auth';
 import authHandler from '../middleware/auth';
 import reautHandler from '../middleware/reauth';
+import Database from '../structures/Database';
+import Route from '../structures/Route';
+import logger from '../util/Logger';
 
 export default class Server {
 	public constructor(port: string) {
@@ -55,7 +55,7 @@ export default class Server {
 				}
 			};
 
-			// @ts-ignore
+			// @ts-expect-error
 			server[file.method!](file.route!, handler);
 		}
 
@@ -81,7 +81,7 @@ export default class Server {
 					res.render('pages/error', { code: error.code || 500, message: error.message });
 				}
 			};
-			// @ts-ignore
+			// @ts-expect-error
 			server[file.method!](file.route!, reautHandler(file), handler);
 		}
 

@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { OAuth } from 'oauth';
-import { Logger } from 'winston';
 import { Connection } from 'typeorm';
+import { Logger } from 'winston';
 
 interface IRouteOptions {
 	auth?: boolean | 'admin';

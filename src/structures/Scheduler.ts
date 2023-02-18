@@ -1,5 +1,5 @@
-import ZkrClient from '../client/ZkrClient';
 import { Repository, LessThan, MoreThan, IsNull } from 'typeorm';
+import ZkrClient from '../client/ZkrClient';
 import { Azkar } from '../models/Azkar';
 import { User } from '../models/Users';
 
@@ -35,7 +35,7 @@ export default class Scheduler {
 
 		for (const { token, token_secert } of users) {
 			try {
-				// @ts-ignore
+				// @ts-expect-error
 				this.client.setAuth({ access_token: token, access_token_secret: token_secert });
 				this.client.tweet(zkr.content);
 			} catch (error) {

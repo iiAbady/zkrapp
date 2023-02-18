@@ -16,7 +16,7 @@ export default class CallbackRoute extends Route {
 
 		this.twitter!.getOAuthAccessToken(
 			oauth_token as string,
-			req.session!.tokenSecert,
+			req.session.tokenSecert,
 			oauth_verifier as string,
 			async (err: any, token: string, tokenSecert: string) => {
 				if (err) {
@@ -28,9 +28,9 @@ export default class CallbackRoute extends Route {
 					user.token_secert = tokenSecert;
 					await this.db!.getRepository(User).save(user);
 					// delete uneeded value.
-					delete req.session!.request_tokenSecert;
-					req.session!.token = token;
-					req.session!.tokenSecert = tokenSecert;
+					delete req.session.request_tokenSecert;
+					req.session.token = token;
+					req.session.tokenSecert = tokenSecert;
 					req.flash('loginInfo', 'شكراً {user}, سيتم نشر ذكر لك كل ساعة من الان.');
 					res.redirect('/');
 				}
