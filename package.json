@@ -19,7 +19,7 @@
 		"express": "^4.18.1",
 		"express-session": "^1.17.3",
 		"memorystore": "^1.6.7",
-		"moment-timezone": "^0.5.34",
+		"moment-timezone": "^0.5.40",
 		"oauth": "^0.9.15",
 		"pg": "^8.7.3",
 		"tslib": "^2.4.0",
