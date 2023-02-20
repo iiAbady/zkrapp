@@ -234,10 +234,10 @@
     "@types/mime" "^1"
     "@types/node" "*"
 
-"@types/twit@^2.2.30":
-  version "2.2.30"
-  resolved "https://registry.yarnpkg.com/@types/twit/-/twit-2.2.30.tgz#2acace6fb1c731f0c92944614305c2667fd391ec"
-  integrity sha512-u9rm+K/vX/A4zSJZ0e3XHyi344/vcRqhj4j/6oHlF8UuuKlytlXrArJbc+jMtT0Q5AQZap7TdEZueQ2sggdRvA==
+"@types/twit@^2.2.31":
+  version "2.2.31"
+  resolved "https://registry.yarnpkg.com/@types/twit/-/twit-2.2.31.tgz#8f0ccb307cd6b83114f3851f35124a91d165bba5"
+  integrity sha512-zdN3k/5hY2ix2koHZ78Y45psNpjX14+9sacY7fctEWFydwAr8mfgcbR3BW7F4LfhVqghRm4VH3NgVytC7JiFWw==
   dependencies:
     "@types/geojson" "*"
     "@types/node" "*"
@@ -321,19 +321,6 @@
   dependencies:
     "@typescript-eslint/types" "5.30.0"
     eslint-visitor-keys "^3.3.0"
-
-"@typescript-eslint/typescript-estree@2.34.0":
-  version "2.34.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-2.34.0.tgz#14aeb6353b39ef0732cc7f1b8285294937cf37d5"
-  integrity sha512-OMAr+nJWKdlVM9LOqCqh3pQQPwxHAN7Du8DR6dmwCrAmxtiXQnhHJ6tBNtf+cggqfo51SG/FCwnKhXCIM7hnVg==
-  dependencies:
-    debug "^4.1.1"
-    eslint-visitor-keys "^1.1.0"
-    glob "^7.1.6"
-    is-glob "^4.0.1"
-    lodash "^4.17.15"
-    semver "^7.3.2"
-    tsutils "^3.17.1"
 
 abbrev@1:
   version "1.1.1"
